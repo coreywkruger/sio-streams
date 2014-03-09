@@ -2,12 +2,28 @@
 	</br>
 	<div class="row">
 		<div class="blocks col-md-8 col-md-offset-2">
-			<div class="col-md-3 small">Connection Status: </div>
-			<div class="col-md-9 small server" ng-show="!startUpdates.value">--- Not connected</div>
-			<div class="col-md-9 small server" ng-show="startUpdates.value">--- Connected</div>
-			</br>
-			<div class="col-md-3 small">The server says:</div><div class="col-md-9 small server">--- {{greeting.message}}</div>
-			</br>
+			<div class="row">
+				<div style="text-align: center;">
+					<h5>
+						<p class="strong lead">
+						This page is updated via Nodejs and Express with Socket.io.</br>
+						Unique, ordered content is being shown to this browser.</br>
+						View the Github repo here:</p>
+						<a href="https://github.com/coreywkruger/sio-streams">https://github.com/coreywkruger/sio-streams</a>
+						<hr>
+						
+					</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 small lead"><strong>Connection status:</strong></div>
+				<div class="col-md-9 small" ng-show="!startUpdates.value">- <em>Not connected</em></div>
+				<div class="col-md-9 small" ng-show="startUpdates.value">- <em>Connected</em></div>
+				</br>
+			</div>
+			<div class="row">
+				<div class="col-md-3 small lead"><strong>The server says:</strong></div><div class="col-md-9 small server">- <em>{{greeting.message}}</em></div>
+			</div>
 		</div>
-	</div></br>
+	</div>
 </div>

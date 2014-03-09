@@ -16,15 +16,10 @@ sioStreamsApp.provider("svc", function(){
         return {
 
         	startUpdates: self.startUpdates,
-
         	serverMessage: self.serverMessage,
-
         	outputs: self.outputs,
-
         	maxMessages: self.maxMessages,
-
         	mainSocket: self.mainSocket,
-
         	greeting: self.greeting,
 
 			startStop: function( start, callback){
@@ -50,7 +45,6 @@ sioStreamsApp.provider("svc", function(){
 
 				//var socket = io.connect('http://chat1-0.herokuapp.com');
 				self.mainSocket = io.connect('192.168.0.2:5000');
-
 				self.mainSocket.on('update', function (data) {
 					
 					self.outputs.outs.push( data );
@@ -62,12 +56,10 @@ sioStreamsApp.provider("svc", function(){
 				});
 
 				self.mainSocket.on('disconnect', function(){
-
 					self.mainSocket.removeEventListener('update');
 				});
 
 				self.mainSocket.on('close', function(){
-
 					self.mainSocket.removeEventListener('update');
 				});
 			},
