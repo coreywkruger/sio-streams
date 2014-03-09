@@ -4,16 +4,10 @@ sioStreamsApp.provider("svc", function(){
 	
 	this.startUpdates = {value: false};
 	this.serverMessage = {message: ''};
-	this.outputs = {outs:[
-		{time: '', message: ''},
-		{time: '', message: ''},
-		{time: '', message: ''},
-		{time: '', message: ''},
-		{time: '', message: ''},
-		{time: '', message: ''}
-	]};
-	this.status = {value: false};
+	this.outputs = {outs:[] };
+	this.maxMessages = {max: 8};
 	this.mainSocket = undefined;
+	this.greeting = {message: ''};
 
     this.$get = ["$rootScope", "$http", function( $rootScope, $http ){
         
@@ -27,9 +21,11 @@ sioStreamsApp.provider("svc", function(){
 
         	outputs: self.outputs,
 
-        	status: self.status,
+        	maxMessages: self.maxMessages,
 
         	mainSocket: self.mainSocket,
+
+        	greeting: self.greeting,
 
 			startStop: function( start, callback){
 
@@ -44,13 +40,9 @@ sioStreamsApp.provider("svc", function(){
 				} ).success(function (data, status, headers, config) { 
 
 					self.startUpdates.value = data.start;
+					self.greeting.message = data.greeting;
 
 					if(callback !==undefined) callback(data.start);
-
-					if(data.callback !== undefined){
-
-						data.callback(self.status);
-					}
 				});
 			},
 
@@ -63,7 +55,7 @@ sioStreamsApp.provider("svc", function(){
 					
 					self.outputs.outs.push( data );
 
-					if( self.outputs.outs.length > 6 ){
+					if( self.outputs.outs.length > self.maxMessages.max ){
 						self.outputs.outs.splice(0, 1);
 					}
 					$rootScope.$apply();
