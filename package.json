@@ -1,6 +1,10 @@
 {
   "name": "siostreams",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coreywkruger/sio-streams.git"
+  },
   "dependencies": {
     "socket.io": "~0.9.16",
     "express": "~3.5.0"

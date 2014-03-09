@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('sioStreamsApp', []);
+var sioStreamsApp = angular.module('sioStreamsApp', []);

@@ -1,11 +1,14 @@
 'use strict';
 
-sioStreamsApp.directive('startUpdates', function () {
+sioStreamsApp.directive('startUpdates', [ 'svc', function (svc) {
     return {
-		    template: 'views/updates.html',
+		    templateUrl: './views/updates.html',
 		    restrict: 'A',
 		    link: function postLink(scope, element, attrs) {
-		    	element.text('this is the startUpdates directive');
+
+				scope.outputs = svc.outputs;
+				
+		    	//element.text('this is the startUpdates directive');
 	    }
     };
-});
+}]);

@@ -4,10 +4,15 @@ sioStreamsApp.provider("svc", function(){
 	
 	this.startUpdates = {value: false};
 	this.serverMessage = {message: ''};
-	this.outputs = {outs: []}
+	this.outputs = {outs:[
+		{time: '', message: 'one'},
+		{time: '', message: 'two'},
+		{time: '', message: 'three'}
+	]};
 	this.status = {value: false};
+	this.mainSocket = undefined;
 
-    this.$get = ["$rootScope", "$http", function( $http, $rootScope ){
+    this.$get = ["$rootScope", "$http", function( $rootScope, $http ){
         
 		var self = this;
 
@@ -17,20 +22,27 @@ sioStreamsApp.provider("svc", function(){
 
         	serverMessage: self.serverMessage,
 
+        	outputs: self.outputs,
+
         	status: self.status,
 
-			start: function( start, callback){
+        	mainSocket: self.mainSocket,
 
-				$http({	
+			startStop: function( start, callback){
+
+				$http( {	
 					method: 'POST',
 					url: '/updates',
-					data: {start: start},
+					data: {
+						start: start,
+						id: self.mainSocket.socket.sessionid
+					},
 					headers: {'Content-Type': 'application/json'}
-				}).success(function (data, status, headers, config) { 
+				} ).success(function (data, status, headers, config) { 
 
 					self.startUpdates.value = data.start;
 
-					if(callback !==undefined) callback(start);
+					if(callback !==undefined) callback(data.start);
 
 					if(data.callback !== undefined){
 
@@ -42,18 +54,32 @@ sioStreamsApp.provider("svc", function(){
 			openSioConn: function(){
 
 				//var socket = io.connect('http://chat1-0.herokuapp.com');
-				var socket = io.connect('localhost:5000');
+				self.mainSocket = io.connect('192.168.0.2:5000');
 
-				socket.on('update', function (data) {
+				self.mainSocket.on('update', function (data) {
 					
-					scope.outputs.outs.push( data );
+					self.outputs.outs.push( data );
+
+					if( self.outputs.outs.length > 4 ){
+						self.outputs.outs.splice(0, 1);
+					}
 					$rootScope.$apply();
 				});
 
-				socket.on('disconnect', function(){
+				self.mainSocket.on('disconnect', function(){
 
-					socket.removeEventListener('update');
+					self.mainSocket.removeEventListener('update');
 				});
+
+				self.mainSocket.on('close', function(){
+
+					self.mainSocket.removeEventListener('update');
+				});
+			},
+
+			closeSioConn: function(){
+
+				self.mainSocket.removeEventListener('update');
 			}
         }
     } ];

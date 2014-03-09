@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('sioStreamsApp')
-  .controller('MainCtrl', function ($scope) {
+sioStreamsApp.controller('mainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
