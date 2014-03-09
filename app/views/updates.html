@@ -1,3 +1,17 @@
-<div ng-repeat="out in outputs.outs">
-	<div> {{out.time}} : {{out.message}}</div><br/>
+<div class="container">
+
+	</br>
+	<div class="row">
+		<div class="blocks col-md-8 col-md-offset-2">
+			hello
+		</div>
+	</div></br>
+	<div class="row">
+		<div class="blocks col-md-8 col-md-offset-2">
+			<div ng-repeat="out in outputs.outs">
+				<div class="col-md-6 small" style="padding: 4px; ">> {{out.time}}</div><div class="col-md-1" style="padding: 4px;">:</div><div class="col-md-5">{{out.message}}</div><br/>
+			</div>
+		</div>
+	</div></br>
+
 </div>

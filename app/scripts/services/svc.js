@@ -5,9 +5,12 @@ sioStreamsApp.provider("svc", function(){
 	this.startUpdates = {value: false};
 	this.serverMessage = {message: ''};
 	this.outputs = {outs:[
-		{time: '', message: 'one'},
-		{time: '', message: 'two'},
-		{time: '', message: 'three'}
+		{time: '', message: ''},
+		{time: '', message: ''},
+		{time: '', message: ''},
+		{time: '', message: ''},
+		{time: '', message: ''},
+		{time: '', message: ''}
 	]};
 	this.status = {value: false};
 	this.mainSocket = undefined;
@@ -60,7 +63,7 @@ sioStreamsApp.provider("svc", function(){
 					
 					self.outputs.outs.push( data );
 
-					if( self.outputs.outs.length > 4 ){
+					if( self.outputs.outs.length > 6 ){
 						self.outputs.outs.splice(0, 1);
 					}
 					$rootScope.$apply();
