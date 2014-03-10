@@ -8,7 +8,7 @@ sioStreamsApp.provider("svc", function(){
 	this.maxMessages = {max: 8};
 	this.mainSocket = undefined;
 	this.greeting = {message: ''};
-	console.log('here');
+
     this.$get = ["$rootScope", "$http", function( $rootScope, $http ){
         
 		var self = this;
