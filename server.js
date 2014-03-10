@@ -56,6 +56,12 @@ io.sockets.on('connection', function (socket) {
 	socket.emit('update', {time: "" + new Date(), message: "Init..." });
 }, 1000);
 
+io.sockets.on('begin', function (socket) {
+
+	socket.join(socket.id);
+	socket.emit('update', {time: "" + new Date(), message: "Init..." });
+}, 1000);
+
 io.sockets.on("disconnect", function(socket){
 
     socket.removeListener("message");

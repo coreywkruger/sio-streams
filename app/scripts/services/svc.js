@@ -45,6 +45,9 @@ sioStreamsApp.provider("svc", function(){
 
 				self.mainSocket = io.connect('http://chat1-0.herokuapp.com');
 				//self.mainSocket = io.connect('192.168.0.2:5000');
+
+				self.mainSocket.emit('begin', {message: 'startup'});
+				
 				self.mainSocket.on('update', function (data) {
 					
 					self.outputs.outs.push( data );
