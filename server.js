@@ -40,19 +40,19 @@ var phrases = [
 var phr = 0;
 
 function update(id){
-
-	for (var i = 0; i < users.length; i++) {
+	io.sockets.emit('update', {time: "" + new Date(), message: 'helloooooooo' });
+	/*for (var i = 0; i < users.length; i++) {
 
 		io.sockets.in(users[i]).emit('update', {time: "" + new Date(), message: phrases[userPlaces[users[i]]] });
 		userPlaces[users[i]]++;
 		userPlaces[users[i]] %= phrases.length;	
-	};	
+	};	*/
 	setTimeout(update, 1000);
 }
 
 io.sockets.on('connection', function (socket) {
 
-	socket.join(socket.id);
+	//socket.join(socket.id);
 	socket.emit('update', {time: "" + new Date(), message: "Init..." })
 }, 1000);
 
