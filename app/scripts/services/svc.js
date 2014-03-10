@@ -29,7 +29,7 @@ sioStreamsApp.provider("svc", function(){
 					url: '/updates',
 					data: {
 						start: start,
-						self.mainSocket.socket.sessionid
+						id: self.mainSocket.socket.sessionid
 					},
 					headers: {'Content-Type': 'application/json'}
 				} ).success(function (data, status, headers, config) { 
