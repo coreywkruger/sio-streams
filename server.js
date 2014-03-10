@@ -40,20 +40,20 @@ var phrases = [
 var phr = 0;
 
 function update(id){
-	io.sockets.emit('update', {time: "" + new Date(), message: 'helloooooooo' });
-	/*for (var i = 0; i < users.length; i++) {
+
+	for (var i = 0; i < users.length; i++) {
 
 		io.sockets.in(users[i]).emit('update', {time: "" + new Date(), message: phrases[userPlaces[users[i]]] });
 		userPlaces[users[i]]++;
 		userPlaces[users[i]] %= phrases.length;	
-	};	*/
+	};	
 	setTimeout(update, 1000);
 }
 
 io.sockets.on('connection', function (socket) {
 
-	//socket.join(socket.id);
-	socket.emit('update', {time: "" + new Date(), message: "Init..." })
+	socket.join(socket.id);
+	socket.emit('update', {time: "" + new Date(), message: "Init..." });
 }, 1000);
 
 io.sockets.on("disconnect", function(socket){
@@ -69,6 +69,7 @@ app.post( '/updates', function(req, res){
 		start:req.body.start, 
 		greeting:"Hello user!!! Welcome!"
 	});
+	io.sockets.emit('update', {time: "" + new Date(), message: "Init..." })
 
 	if(!req.body.start){
 
