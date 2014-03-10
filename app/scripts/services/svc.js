@@ -22,14 +22,14 @@ sioStreamsApp.provider("svc", function(){
         	mainSocket: self.mainSocket,
         	greeting: self.greeting,
 
-			startStop: function( start, callback, id){
+			startStop: function( start, callback){
 
 				$http( {	
 					method: 'POST',
 					url: '/updates',
 					data: {
 						start: start,
-						id: id//self.mainSocket.socket.sessionid
+						self.mainSocket.socket.sessionid
 					},
 					headers: {'Content-Type': 'application/json'}
 				} ).success(function (data, status, headers, config) { 
@@ -47,7 +47,7 @@ sioStreamsApp.provider("svc", function(){
 				//self.mainSocket = io.connect('192.168.0.2:5000');
 
 				self.mainSocket.emit('begin', {message: 'startup'});
-				
+
 				self.mainSocket.on('update', function (data) {
 					
 					self.outputs.outs.push( data );
