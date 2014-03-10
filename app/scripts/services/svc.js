@@ -22,14 +22,14 @@ sioStreamsApp.provider("svc", function(){
         	mainSocket: self.mainSocket,
         	greeting: self.greeting,
 
-			startStop: function( start, callback){
+			startStop: function( start, callback, id){
 
 				$http( {	
 					method: 'POST',
 					url: '/updates',
 					data: {
 						start: start,
-						id: self.mainSocket.socket.sessionid
+						id: id//self.mainSocket.socket.sessionid
 					},
 					headers: {'Content-Type': 'application/json'}
 				} ).success(function (data, status, headers, config) { 

@@ -33,7 +33,7 @@ sioStreamsApp.directive('openConn', [ 'svc', function (svc) {
 
 		    	scope.openConnection = function(){
 
-		    		svc.startStop( true );
+		    		svc.startStop( true, undefined, sock.sessionid );
 		    	};
 		    	scope.closeConnection = function(){
 
