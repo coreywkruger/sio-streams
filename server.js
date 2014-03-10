@@ -20,7 +20,7 @@ io.configure(function () {
 	io.set("transports", ["xhr-polling"]); 
   	io.set("polling duration", 1000); 
 });
-var socket = new io.Socket();
+//var socket = new io.Socket();
 
 var users = [];
 var userPlaces = {};
