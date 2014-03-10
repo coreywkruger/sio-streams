@@ -63,16 +63,16 @@ io.sockets.on('connection', function (socket) {
 
 io.sockets.on('begin', function (socket) {
 
-	socket.join(socket.id);
+	//socket.join(socket.id);
 	socket.emit('update', {time: "" + new Date(), message: "Init..." });
 });
 
-io.sockets.on("disconnect", function(socket){
+/*io.sockets.on("disconnect", function(socket){
 
     socket.removeListener("message");
     users.splice(users.indexOf(socket.id), 1);
     delete userPlaces[socket.id];
-});
+});*/
 
 app.post( '/updates', function(req, res){
 
@@ -80,7 +80,7 @@ app.post( '/updates', function(req, res){
 		start:req.body.start, 
 		greeting:"Hello user!!! Welcome! Test, test..."
 	});
-	io.sockets.emit('update', {time: "" + new Date(), message: "Init......" })
+	//io.sockets.emit('update', {time: "" + new Date(), message: "Init......" })
 
 	if(!req.body.start){
 
@@ -92,7 +92,7 @@ app.post( '/updates', function(req, res){
 	}
 });
 
-update();
+//update();
 
 
 
