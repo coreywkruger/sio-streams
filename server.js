@@ -18,7 +18,7 @@ var io = require('socket.io').listen(server);
 
 io.configure(function () { 
 	io.set("transports", ["xhr-polling"]); 
-  	io.set("polling duration", 10); 
+  	io.set("polling duration", 1000); 
 });
 //var socket = new io.Socket();
 
@@ -69,7 +69,7 @@ app.post( '/updates', function(req, res){
 		start:req.body.start, 
 		greeting:"Hello user!!! Welcome! Test, test..."
 	});
-	io.sockets.emit('update', {time: "" + new Date(), message: "Init..." })
+	io.sockets.emit('update', {time: "" + new Date(), message: "Init......" })
 
 	if(!req.body.start){
 
