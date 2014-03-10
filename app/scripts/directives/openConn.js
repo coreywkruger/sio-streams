@@ -11,16 +11,6 @@ sioStreamsApp.directive('openConn', [ 'svc', function (svc) {
 		    	//svc.openSioConn();
 		    	scope.outputs = svc.outputs;
 
-				connection = new WebSocket('ws://http://chat1-0.herokuapp.com');
-
-				connection.addEventListener("open", function (event) {
-					console.log('opened!!');
-				}, false);
-
-				connection.addEventListener("update", function (event) {
-					console.log('opened!!');
-				}, false);
-
 		    	scope.openConnection = function(){
 
 		    		svc.startStop( true, undefined, sock.sessionid );
