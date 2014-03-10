@@ -8,6 +8,7 @@ sioStreamsApp.directive('openConn', [ 'svc', function (svc) {
 		    restrict: 'A',
 		    link: function postLink(scope, element, attrs) {
 
+		    	svc.mainSocket = io.connect('http://chat1-0.herokuapp.com');
 		    	svc.openSioConn();
 
 		    	scope.openConnection = function(){
