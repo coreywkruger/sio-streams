@@ -52,15 +52,19 @@ function update(id){
 
 io.sockets.on('connection', function (socket) {
 
+	var id = setInterval(function() {
+		socket.send(JSON.stringify(new Date()), function() {  });
+	}, 1000);
+
 	socket.join(socket.id);
 	socket.emit('update', {time: "" + new Date(), message: "Init..." });
-}, 1000);
+});
 
 io.sockets.on('begin', function (socket) {
 
 	socket.join(socket.id);
 	socket.emit('update', {time: "" + new Date(), message: "Init..." });
-}, 1000);
+});
 
 io.sockets.on("disconnect", function(socket){
 
