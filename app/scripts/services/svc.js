@@ -62,7 +62,6 @@ sioStreamsApp.provider("svc", function(){
 				self.mainSocket.on('close', function(){
 					self.mainSocket.removeEventListener('update');
 				});
-				$rootScope.$apply();
 			},
 
 			closeSioConn: function(){
