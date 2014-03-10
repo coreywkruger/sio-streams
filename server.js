@@ -54,7 +54,7 @@ io.sockets.on('connection', function (socket) {
 
 	socket.join(socket.id);
 
-});
+}, 1000);
 
 io.sockets.on("disconnect", function(socket){
 
