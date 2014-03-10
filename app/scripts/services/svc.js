@@ -24,21 +24,26 @@ sioStreamsApp.provider("svc", function(){
 
 			startStop: function( start, callback){
 
-				$http( {	
-					method: 'POST',
-					url: '/updates',
-					data: {
-						start: start,
-						id: self.mainSocket.socket.sessionid
-					},
-					headers: {'Content-Type': 'application/json'}
-				} ).success(function (data, status, headers, config) { 
+				setInterval( 
 
-					self.startUpdates.value = data.start;
-					self.greeting.message = data.greeting;
+				function(){
+					$http({	
+						method: 'POST',
+						url: '/updates',
+						data: {
+							start: start,
+							id: self.mainSocket.socket.sessionid
+						},
+						headers: {'Content-Type': 'application/json'}
+					}).success(function (data, status, headers, config) { 
 
-					if(callback !==undefined) callback(data.start);
-				});
+						self.startUpdates.value = data.start;
+						self.greeting.message = data.greeting;
+
+						if(callback !==undefined) callback(data.start);
+					});
+				}, 1000 );
+
 			},
 
 			openSioConn: function(){

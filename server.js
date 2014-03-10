@@ -74,26 +74,25 @@ io.sockets.on('begin', function (socket) {
     delete userPlaces[socket.id];
 });*/
 
+var count = 0;
 app.post( '/updates', function(req, res){
 
 	res.send({ 
 		start:req.body.start, 
-		greeting:"Hello user!!! Welcome! Test, test..."
+		greeting: phrases[count];//"Hello user!!! Welcome! Test, test..."
 	});
+	count++;
+	count %= phrases.length;
 	//io.sockets.emit('update', {time: "" + new Date(), message: "Init......" })
 
-	if(!req.body.start){
+	/*if(!req.body.start){
 
 		users.splice(users.indexOf(req.body.id), 1);
 		delete userPlaces[req.body.id];
 	}else{
 		users.push(req.body.id);
 		userPlaces[req.body.id] = 0;
-	}
-
-	var id = setInterval(function() {
-		res.send(JSON.stringify(new Date()), function() {  });
-	}, 1000);
+	}*/
 });
 
 //update();
