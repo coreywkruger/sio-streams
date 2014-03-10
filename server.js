@@ -14,26 +14,6 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
 });
 
-
-var wsServer = http.createServer(app);
-wsServer.listen(process.env.PORT || 5000);
-
-var wss = new WebSocketServer({wsServer: wsServer});
-
-wss.on('connection', function(ws) {
-	var id = setInterval(function() {
-		ws.send(JSON.stringify(new Date()), function() {  });
-	}, 1000);
-
-  	console.log('websocket connection open');
-
-  	ws.on('close', function() {
-    	console.log('websocket connection close');
-    	clearInterval(id);
-  	});
-});
-
-
 var io = require('socket.io').listen(server);
 
 io.configure(function () { 
@@ -110,6 +90,10 @@ app.post( '/updates', function(req, res){
 		users.push(req.body.id);
 		userPlaces[req.body.id] = 0;
 	}
+
+	var id = setInterval(function() {
+		res.send(JSON.stringify(new Date()), function() {  });
+	}, 1000);
 });
 
 //update();
