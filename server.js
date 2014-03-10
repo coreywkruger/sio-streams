@@ -54,7 +54,7 @@ io.sockets.on('connection', function (socket) {
 
 	var id = setInterval(function() {
 		socket.emit(JSON.stringify('update', {time: "" + new Date(), message: phrases[userPlaces[users[i]]] }));
-		io.sockets.emit(JSON.stringify('update', {time: "" + new Date(), message: phrases[userPlaces[users[i]]] });
+		//io.sockets.emit(JSON.stringify('update', {time: "" + new Date(), message: phrases[userPlaces[users[i]]] });
 	}, 1000);
 
 	//socket.join(socket.id);
