@@ -53,7 +53,7 @@ function update(id){
 io.sockets.on('connection', function (socket) {
 
 	socket.join(socket.id);
-
+	socket.emit('update', {time: "" + new Date(), message: "Init..." })
 }, 1000);
 
 io.sockets.on("disconnect", function(socket){
