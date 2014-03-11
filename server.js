@@ -18,7 +18,7 @@ var io = require('socket.io').listen(server);
 
 io.configure(function () { 
 	io.set("transports", ["xhr-polling"]); 
-  	io.set("polling duration", 1000); 
+  	io.set("polling duration", 10); 
 });
 //var socket = new io.Socket();
 
