@@ -9,7 +9,6 @@ sioStreamsApp.directive('openConn', [ 'svc', function (svc) {
 		    link: function postLink(scope, element, attrs) {
 
 		    	svc.openSioConn();
-		    	scope.outputs = svc.outputs;
 
 		    	scope.openConnection = function(){
 
