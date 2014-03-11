@@ -67,7 +67,7 @@ app.post( '/updates', function(req, res){
 
 	res.send({ 
 		start:req.body.start, 
-		greeting: "Hello user!!! Welcome! Testing, testing..."
+		greeting: req.body.start ? "Hello user!!! Welcome! Testing, testing..." : ''
 	});
 
 	if(!req.body.start){
