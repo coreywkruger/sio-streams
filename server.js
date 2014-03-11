@@ -20,7 +20,6 @@ io.configure(function () {
 	io.set("transports", ["xhr-polling"]); 
   	io.set("polling duration", 10); 
 });
-//var socket = new io.Socket();
 
 var users = [];
 var userPlaces = {};
@@ -52,22 +51,9 @@ function update(id){
 
 io.sockets.on('connection', function (socket) {
 
-	io.sockets.emit('update', 'hello, I am here.')
-	
-	/*var id = setInterval(function() {
-		socket.emit(JSON.stringify({time: "" + new Date(), message: phrases[userPlaces[users[i]]] }));
-		//io.sockets.emit(JSON.stringify('update', {time: "" + new Date(), message: phrases[userPlaces[users[i]]] });
-	}, 1000);*/
-
 	socket.join(socket.id);
 	socket.emit('update', {time: "" + new Date(), message: "Init..." });
 });
-
-/*io.sockets.on('begin', function (socket) {
-
-	//socket.join(socket.id);
-	socket.emit('update', {time: "" + new Date(), message: "Init..." });
-});*/
 
 io.sockets.on("disconnect", function(socket){
 
@@ -81,9 +67,8 @@ app.post( '/updates', function(req, res){
 
 	res.send({ 
 		start:req.body.start, 
-		greeting: "Hello user!!! Welcome! Test, test..."
+		greeting: "Hello user!!! Welcome! Testing, testing..."
 	});
-	//io.sockets.emit('update', {time: "" + new Date(), message: "Init......" })
 
 	if(!req.body.start){
 

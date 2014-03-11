@@ -43,11 +43,10 @@ sioStreamsApp.provider("svc", function(){
 
 			openSioConn: function(){
 
-				self.mainSocket = io.connect(window.location.hostname);//'http://chat1-0.herokuapp.com');
-				//self.mainSocket = io.connect('192.168.0.2:5000');
+				self.mainSocket = io.connect(window.location.hostname);
 				
 				self.mainSocket.on('update', function (data) {
-					console.log(data);
+
 					self.outputs.outs.push( data );
 
 					if( self.outputs.outs.length > self.maxMessages.max ){
