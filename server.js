@@ -52,13 +52,15 @@ function update(id){
 
 io.sockets.on('connection', function (socket) {
 
-	var id = setInterval(function() {
-		socket.emit(JSON.stringify('update', {time: "" + new Date(), message: phrases[userPlaces[users[i]]] }));
+	io.sockets.emit('update', 'hello, I am here.')
+	
+	/*var id = setInterval(function() {
+		socket.emit(JSON.stringify({time: "" + new Date(), message: phrases[userPlaces[users[i]]] }));
 		//io.sockets.emit(JSON.stringify('update', {time: "" + new Date(), message: phrases[userPlaces[users[i]]] });
-	}, 1000);
+	}, 1000);*/
 
-	//socket.join(socket.id);
-	//socket.emit('update', {time: "" + new Date(), message: "Init..." });
+	socket.join(socket.id);
+	socket.emit('update', {time: "" + new Date(), message: "Init..." });
 });
 
 /*io.sockets.on('begin', function (socket) {
@@ -67,12 +69,12 @@ io.sockets.on('connection', function (socket) {
 	socket.emit('update', {time: "" + new Date(), message: "Init..." });
 });*/
 
-/*io.sockets.on("disconnect", function(socket){
+io.sockets.on("disconnect", function(socket){
 
     socket.removeListener("message");
     users.splice(users.indexOf(socket.id), 1);
     delete userPlaces[socket.id];
-});*/
+});
 
 var count = 0;
 app.post( '/updates', function(req, res){
@@ -93,7 +95,7 @@ app.post( '/updates', function(req, res){
 	}
 });
 
-//update();
+update();
 
 
 
